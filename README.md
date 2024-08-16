@@ -10,7 +10,7 @@ Magnetic Resonance Imaging (MRI) is a critical diagnostic tool in modern healthc
 This project leverages advancements in computational power and artificial intelligence to develop a novel virtual MRI framework and AI tools that address the limitations of ultra-low-field MRIs. A brain model is first created as the subject for the virtual MRI machine, which is built using computational models that replicate the physics of MRI, allowing for the generation of k-space data and the subsequent reconstruction of 3D brain models. AI tools are used to generate high-resolution reconstructions of 3D brain models from noisy data and to accurately identify brain defects.
 
 
-##Virtual MRI Machines:
+## Virtual MRI Machines:
 
 In a real MRI machine, strong magnetic fields are used to align hydrogen atoms in a specific orientation. When a radiofrequency (RF) pulse is applied perpendicular to the main magnetic field, the hydrogen atoms absorb this energy and change their orientation. As the RF pulse is turned off, the hydrogen atoms quickly relax back to their original alignment, releasing energy in the process. This energy is detected by RF coils, which encode the signals into the frequency domain. These frequency-domain signals are then transformed into images through an inverse Fourier transformation.
 
