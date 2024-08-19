@@ -1,3 +1,4 @@
+import numpy as np
 # Constants
 h = 6.626e-34  # Planck's constant in J*s
 hbar = h / (2 * np.pi)  # Reduced Planck's constant
