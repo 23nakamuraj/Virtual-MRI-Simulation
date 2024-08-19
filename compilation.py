@@ -1,32 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-
-# Constants
-h = 6.626e-34  # Planck's constant in J*s
-hbar = h / (2 * np.pi)  # Reduced Planck's constant
-k_B = 1.38e-23  # Boltzmann constant in J/K
-
-# Variable constants
-gamma_proton = 2.675e8
-gamma_bar = gamma_proton/(2*np.pi)
-
-# Gyromagnetic ratio rad/s/T
-I_proton = 0.5  # Spin quantum number for protons
-Ns = 1e23  # Number of spins
-m_I_values = [+1/2, -1/2] # Magnetic quantum number values for a spin-1/2 system (hydrogen)
-
-# MRI system variables
-B0 = 1.5  # External magnetic field in Tesla
-Ts = 310  # Temperature in Kelvin
-
-# Larmor frequency
-larmor = gamma_proton * B0
-
-# Time array for simulation
-t = np.linspace(0, 1e-3, 1000)  # 1 millisecond simulation
-
-
-
+from constant import *
 
 def nuclear_magnetic_moment(gamma, I):
     """
@@ -219,7 +193,7 @@ plt.show()
 
 
 
-def spin_up_down(m_I):
+def spin_up_down():
     """
     Applying quantum theory E = -mu * B0 for pointing-up spins(m=1/2)
 
@@ -267,7 +241,7 @@ def spin_population(E_delta):
     N_down = N_up / N_ratio
     return N_up, N_down, N_ratio, N_diff
 
-def bulk_magnetization(N_up, N_down, m_I_values):
+def bulk_magnetization(N_up, N_down):
     """
     Calculates the bulk magnetization vector from spin system using eq below.
     M = M_x{i} + M_y{j} + M_z{k}
@@ -282,12 +256,12 @@ def bulk_magnetization(N_up, N_down, m_I_values):
     M = 0.5*(N_up - N_down) * gamma_proton * hbar
     return M
 
-def bulk_magnetization_magnitude(M):
+def bulk_magnetization_magnitude():
     M_magn = (gamma_proton**2 * hbar**2 * B0 * Ns* I_proton * (I_proton + 1))/(3* k_B * Ts) 
     return M_magn
 
 # Calculate the energy levels
-E_up, E_down = spin_up_down(m_I_values)
+E_up, E_down = spin_up_down()
 
 # Calculate the energy difference
 E_delta = spin_energy_diff(E_up, E_down)
@@ -295,9 +269,10 @@ E_delta = spin_energy_diff(E_up, E_down)
 # Calculate the spin populations
 N_up, N_down, N_ratio, N_diff = spin_population(E_delta)
 
-M  = bulk_magnetization(N_up, N_down, m_I_values)
-M_magn = bulk_magnetization_magnitude(M)
+M  = bulk_magnetization(N_up, N_down)
+M_magn = bulk_magnetization_magnitude()
 print(f'Bulk magnetization is {M} and its magnitude is:{M_magn}')
 print(f'E_up is: {E_up}\nE_down is: {E_down} \nDifference is:  {E_delta}')
 print(f'The number of spins is {Ns} with spin up {N_up} and spin down {N_down}')
 print(f'The ratio between spins is {N_ratio} and diff {N_diff}')
+
