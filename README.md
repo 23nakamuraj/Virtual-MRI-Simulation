@@ -1,5 +1,7 @@
 # Virtual-MRI-Simulation
 
+Project is still in the works...Github will be updated periodically.
+
 ## Abstract
 
 Title: Developing a Cost-Effective MRI Machine for Underserved Communities
